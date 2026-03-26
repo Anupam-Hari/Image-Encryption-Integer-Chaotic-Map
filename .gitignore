@@ -9,6 +9,8 @@ __pycache__/
 *.jpeg
 results/
 test_images/
+experiments/*
+!experiments/run_manager.py
 
 # vscode
 .vscode/
