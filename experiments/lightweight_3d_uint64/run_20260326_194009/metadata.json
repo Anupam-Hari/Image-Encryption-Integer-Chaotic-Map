@@ -1,0 +1,45 @@
+{
+    "algorithm": "lightweight_3d_uint64",
+    "lightweight_3d_uint64": {
+        "key_size_bits": 128,
+        "iv_size_bits": 128,
+        "hash_function": "sha512",
+        "state_bits": 64,
+        "state_variables": 3,
+        "parameter_variables": 3,
+        "discard_transient": 2000,
+        "fixed_point_modulus": 18446744073709551616,
+        "block_size": 32,
+        "block_parameter_feedback": true,
+        "scan_modes": [
+            "row",
+            "column",
+            "zigzag",
+            "reverse"
+        ],
+        "rotation_bit_width": 8,
+        "enable_cipher_feedback": true,
+        "msb_mask": 240,
+        "lsb_mask": 15,
+        "bitplane_rotation_max": 4,
+        "bitplane_mask_bits": 4,
+        "separate_control_stream": true,
+        "pixel_dtype": "uint8",
+        "grayscale_only": true
+    },
+    "batch": {
+        "enabled": true,
+        "num_images": 10,
+        "shuffle": true,
+        "compute_std": true
+    },
+    "dataset": {
+        "input_folder": "test_images",
+        "num_images": 10,
+        "grayscale": true
+    },
+    "experiment": {
+        "save_decrypted": true,
+        "compute_differential": true
+    }
+}

@@ -1,0 +1,17 @@
+# environments
+venv/
+__pycache__/
+*.pyc
+
+# images and outputs
+*.png
+*.jpg
+*.jpeg
+results/
+test_images/
+
+# vscode
+.vscode/
+
+# misc
+*.log
