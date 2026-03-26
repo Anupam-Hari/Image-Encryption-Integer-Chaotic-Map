@@ -195,10 +195,10 @@ def evaluate(original, encrypted, encrypt_function,
         plot=False
     )
 
-    computation = evaluate_computation(
-        original,
-        encrypt_function,
-        num_runs
-    )
+    # computation = evaluate_computation(
+    #     original,
+    #     encrypt_function,
+    #     num_runs
+    # )
 
-    return {**security, **computation}
+    return { **security}
