@@ -192,7 +192,7 @@ def evaluate(original, encrypted, encrypt_function,
         original,
         encrypted,
         encrypted_modified,
-        plot=plot
+        plot=False
     )
 
     computation = evaluate_computation(

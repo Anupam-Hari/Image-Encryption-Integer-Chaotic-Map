@@ -7,7 +7,7 @@ from config.default_config import CONFIG
 from encryption.lightweight_image_encryptor import encrypt_image, decrypt_image
 from analysis.evaluator import evaluate
 from experiments.run_manager import create_run
-from results.result_writer import save_results
+# from results.result_writer import save_results
 
 
 algorithm = CONFIG["algorithm"]
@@ -54,7 +54,7 @@ results = evaluate(
 )
 results["decryption_correct"] = bool(np.array_equal(img, recovered))
 
-save_results(results, algorithm, run_id)
+# save_results(results, algorithm, run_id)
 
 print("Single image lightweight test complete.")
 
