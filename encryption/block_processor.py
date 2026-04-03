@@ -61,6 +61,12 @@ def encrypt_block(block, state, config):
         config
     )
 
+    block_sum = int(np.sum(block)) & ((1 << 64) - 1)
+
+    # state["r1"] ^= block_sum
+    # state["r2"] ^= (block_sum << 1) & ((1 << 64) - 1)
+    # state["r3"] ^= (block_sum << 2) & ((1 << 64) - 1)
+
     return block, state, raw_keystream
 
 
@@ -109,5 +115,11 @@ def decrypt_block(block, state, config):
 
     # 6. Reverse hybrid collision
     block = decrypt_hybrid_collision(block, collision_bits)
+
+    block_sum = int(np.sum(original_cipher_block)) & ((1 << 64) - 1)
+
+    # state["r1"] ^= block_sum
+    # state["r2"] ^= (block_sum << 1) & ((1 << 64) - 1)
+    # state["r3"] ^= (block_sum << 2) & ((1 << 64) - 1)
 
     return block, state

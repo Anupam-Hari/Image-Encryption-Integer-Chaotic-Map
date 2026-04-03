@@ -17,16 +17,19 @@ def encrypt_stateless_diffusion_block(
 ):
     encrypted = block.copy()
     idx = 0
+    prev_c = 0
 
     for (i, j) in scan_indices:
         P = int(encrypted[i, j])
         K = int(keystream[idx])
         r = int(rotation_vals[idx])
 
-        # Stateless keyed diffusion
-        C = rotl8(P ^ K, r)
+        # Intra-block chained diffusion
+        mixed = ((P ^ K) + prev_c) % 256
+        C = rotl8(mixed, r)
 
         encrypted[i, j] = C
+        prev_c = C
         idx += 1
 
     return encrypted
@@ -39,6 +42,7 @@ def decrypt_stateless_diffusion_block(
     scan_indices
 ):
     decrypted = block.copy()
+    prev_c = 0
     idx = 0
 
     for (i, j) in scan_indices:
@@ -47,9 +51,11 @@ def decrypt_stateless_diffusion_block(
         r = int(rotation_vals[idx])
 
         # Exact inverse
-        P = rotr8(C, r) ^ K
+        mixed = rotr8(C, r)
+        P = ((mixed - prev_c) % 256) ^ K
 
         decrypted[i, j] = P
+        prev_c = C
         idx += 1
 
     return decrypted
