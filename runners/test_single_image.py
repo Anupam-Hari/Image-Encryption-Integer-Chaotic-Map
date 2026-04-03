@@ -10,7 +10,7 @@ from analysis.evaluator import evaluate
 # ------------------------------------------------------------------
 # Load Image
 # ------------------------------------------------------------------
-image_path = "test_images/256x256/cameraman.png"
+image_path = "cameraman.png"
 img = cv2.imread(image_path, 0)
 
 if img is None:
